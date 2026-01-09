@@ -51,7 +51,7 @@ export default function ChecklistPage() {
     const fetchItems = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/checklist/${userId}`
+          `https://checkbox-back.onrender.com/api/checklist/${userId}`
         );
         if (!res.ok) throw new Error("Failed to fetch checklist");
 
@@ -71,7 +71,7 @@ export default function ChecklistPage() {
     if (!newItemName.trim() || !userId) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/checklist", {
+      const res = await fetch("https://checkbox-back.onrender.com/api/checklist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, name: newItemName }),
@@ -91,7 +91,7 @@ export default function ChecklistPage() {
   /* ---------------- DELETE ITEM ---------------- */
   const deleteItem = async (id: string) => {
     try {
-      await fetch(`http://localhost:5000/api/checklist/${id}`, {
+      await fetch(`https://checkbox-back.onrender.com/api/checklist/${id}`, {
         method: "DELETE",
       });
       setItems(prev => prev.filter(i => i._id !== id));
@@ -105,7 +105,7 @@ export default function ChecklistPage() {
   const toggleItem = async (item: ChecklistItem) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/checklist/toggle/${item._id}`,
+        `https://checkbox-back.onrender.com/api/checklist/toggle/${item._id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
